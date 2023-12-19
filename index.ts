@@ -4,7 +4,7 @@ import fs from "fs";
 const file = fs.readFileSync("./E8A6B107AAFA9A65A739BEA3BB9FBE76.txt")
 
 const app: Application = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 80;
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Express & TypeScript Server');
