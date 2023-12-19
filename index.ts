@@ -11,7 +11,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/.well-known/pki-validation/E8A6B107AAFA9A65A739BEA3BB9FBE76.txt', (req: Request, res: Response) => {
-  res.sendFile('fpl-server/E8A6B107AAFA9A65A739BEA3BB9FBE76.txt');
+  res.sendFile('/home/fpl-server/E8A6B107AAFA9A65A739BEA3BB9FBE76.txt');
 
 })
 app.listen(port, () => {
