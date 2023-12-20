@@ -1,7 +1,14 @@
 import express, { Express, Request, Response , Application } from 'express';
 import fs from "fs";
+import https from "https";
 
-const file = fs.readFileSync("./E8A6B107AAFA9A65A739BEA3BB9FBE76.txt")
+const key = fs.readFileSync("./private.key")
+const cert = fs.readFileSync("./certificate.crt")
+
+const cred = {
+  key,
+  cert
+}
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -17,3 +24,6 @@ app.get('/.well-known/pki-validation/E8A6B107AAFA9A65A739BEA3BB9FBE76.txt', (req
 app.listen(port, () => {
   console.log(`Server is Fire at http://localhost:${port}`);
 });
+
+const httpsServer = https.createServer(cred, app);
+httpsServer.listen(8443);
