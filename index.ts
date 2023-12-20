@@ -2,8 +2,8 @@ import express, { Express, Request, Response , Application } from 'express';
 import fs from "fs";
 import https from "https";
 
-const key = fs.readFileSync("./private.key")
-const cert = fs.readFileSync("./certificate.crt")
+const key = fs.readFileSync("../certs/private.key")
+const cert = fs.readFileSync("../certs/certificate.crt")
 
 const cred = {
   key,
