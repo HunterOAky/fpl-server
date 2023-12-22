@@ -19,7 +19,7 @@ const app: Application = express();
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: ['http://localhost:3000', "https://main.dtbdogmykmx3l.amplifyapp.com"], 
+  origin: ['http://localhost:3001', "https://main.dtbdogmykmx3l.amplifyapp.com"], 
 };
 
 app.use(cors(corsOptions));

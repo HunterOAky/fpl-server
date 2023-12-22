@@ -5,9 +5,9 @@ interface StringJSONObject {
 }
 
 export const getPoints = async (managerList: StringJSONObject) => {
-  console.log("in func",managerList)
-  for(let manager in managerList){
-    console.log(managerList[manager])
+  const results: { [key: string]: any } = {};
+
+  for (let manager in managerList) {
     try {
       const url = 'https://apin.livefpltables.com/';
       const requestBody = {
@@ -21,7 +21,7 @@ export const getPoints = async (managerList: StringJSONObject) => {
               last_deadline_total_transfers
               started_event
             }
-  
+
             entryHistory(id: ${managerList[manager]}) {
               current {
                 total_points
@@ -43,7 +43,7 @@ export const getPoints = async (managerList: StringJSONObject) => {
                 rank
               }
             }
-  
+
             picks(entry: ${managerList[manager]}, event: 18) {
               active_chip
               entry_history {
@@ -62,7 +62,7 @@ export const getPoints = async (managerList: StringJSONObject) => {
                 is_vice_captain
               }
             }
-  
+
             entryTransfers(entry: ${managerList[manager]}, event: 18) {
               transfer {
                 element_in {
@@ -75,12 +75,10 @@ export const getPoints = async (managerList: StringJSONObject) => {
                 }
               }
             }
-  
-            
           }
         `,
       };
-  
+
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -88,19 +86,28 @@ export const getPoints = async (managerList: StringJSONObject) => {
         },
         body: JSON.stringify(requestBody),
       });
-  
+
       console.log("RES", response);
-  
+
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.status}`);
       }
-  
+
       const data: any = await response.json();
-      return data;
+      console.log((data.data.entryHistory.current).length)
+      let weeksPlayed = (data.data.entryHistory.current).length;
+      results[manager] = [];
+      for(let week = 0;week < weeksPlayed; week++){
+        results[manager].push({
+          week: week + 1, // Adjust week number if needed
+          points: data.data.entryHistory.current[week].points,
+        });
+      }
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
-
   }
+
+  return results;
 };
