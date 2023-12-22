@@ -18,6 +18,7 @@ export const getPoints = async (startWeek: number, endWeek: number, managerId: s
           // If the response status is 404, return totalPoints
           return totalPoints;
         } else {
+          console.log(await response.json());
           // If the response status is other than 404, throw an error
           throw new Error(`Failed to fetch data for Week ${currentWeek}. Status: ${response.status}`);
         }
