@@ -19,7 +19,7 @@ const app: Application = express();
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // Allow only this origin
+  origin: ['http://localhost:3000', "https://main.dtbdogmykmx3l.amplifyapp.com"], 
 };
 
 app.use(cors(corsOptions));
