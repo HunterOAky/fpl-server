@@ -30,17 +30,13 @@ app.get('/', (req: Request, res: Response) => {
 
 app.post('/points', async (req: Request, res: Response) => {
   try {
-    const { startWeek, endWeek, managerId } = req.body;
+    const requestData = req.body as Record<string, string>;
 
-    // Validate the presence of required parameters
-    if (!startWeek || !endWeek || !managerId) {
-      return res.status(400).send('Missing required parameters');
-    }
+    // Handle the requestData as needed
+    console.log('Request Data:', requestData);
 
-    // Your getPoints function should take startWeek, endWeek, and managerId as arguments
-    const totalPoints = await getPoints(startWeek, endWeek, managerId);
-
-    res.send(`${totalPoints}`);
+    // For demonstration, simply sending back the received data
+    res.json(await getPoints(requestData));
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
