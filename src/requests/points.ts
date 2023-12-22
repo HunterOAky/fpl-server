@@ -87,14 +87,11 @@ export const getPoints = async (managerList: StringJSONObject) => {
         body: JSON.stringify(requestBody),
       });
 
-      console.log("RES", response);
-
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.status}`);
       }
 
       const data: any = await response.json();
-      console.log((data.data.entryHistory.current).length)
       let weeksPlayed = (data.data.entryHistory.current).length;
       results[manager] = [];
       for(let week = 0;week < weeksPlayed; week++){

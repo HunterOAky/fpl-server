@@ -32,9 +32,6 @@ app.post('/points', async (req: Request, res: Response) => {
   try {
     const requestData = req.body as Record<string, string>;
 
-    // Handle the requestData as needed
-    console.log('Request Data:', requestData);
-
     // For demonstration, simply sending back the received data
     res.json(await getPoints(requestData));
   } catch (error) {
