@@ -10,7 +10,13 @@ export const getPoints = async (startWeek: number, endWeek: number, managerId: s
       const endpoint = `/${managerId}/event/${currentWeek}/picks/`;
       const url = `${baseUrl}${endpoint}`;
 
-      const response = await fetch(url);
+      // Define the custom User-Agent header
+      const headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36',
+      };
+
+      // Send the fetch request with the custom User-Agent header
+      const response = await fetch(url, { headers });
       console.log("RES", response);
 
       if (!response.ok) {
@@ -18,7 +24,6 @@ export const getPoints = async (startWeek: number, endWeek: number, managerId: s
           // If the response status is 404, return totalPoints
           return totalPoints;
         } else {
-          console.log(await response.json());
           // If the response status is other than 404, throw an error
           throw new Error(`Failed to fetch data for Week ${currentWeek}. Status: ${response.status}`);
         }
