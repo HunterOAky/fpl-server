@@ -98,6 +98,8 @@ export const getPoints = async (managerList: StringJSONObject) => {
         results[manager].push({
           week: week + 1, // Adjust week number if needed
           points: data.data.entryHistory.current[week].points,
+          teamName: data.data.entry.name,
+          transfers: data.data.entryTransfers[0].transfer,
         });
       }
     } catch (error) {
