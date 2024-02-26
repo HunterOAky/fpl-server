@@ -43,38 +43,6 @@ export const getPoints = async (managerList: StringJSONObject) => {
                 rank
               }
             }
-
-            picks(entry: ${managerList[manager]}, event: 18) {
-              active_chip
-              entry_history {
-                event_transfers
-                event_transfers_cost
-              }
-              picks {
-                player {
-                  id
-                  web_name
-                }
-                position
-                multiplier
-                original_multiplier
-                is_captain
-                is_vice_captain
-              }
-            }
-
-            entryTransfers(entry: ${managerList[manager]}, event: 18) {
-              transfer {
-                element_in {
-                  web_name
-                  id
-                }
-                element_out {
-                  web_name
-                  id
-                }
-              }
-            }
           }
         `,
       };
@@ -91,6 +59,7 @@ export const getPoints = async (managerList: StringJSONObject) => {
         throw new Error(`Network response was not ok: ${response.status}`);
       }
 
+      console.log(manager);
       const data: any = await response.json();
       let weeksPlayed = (data.data.entryHistory.current).length;
       results[manager] = [];
