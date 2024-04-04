@@ -53,5 +53,7 @@ app.get('/.well-known/pki-validation/74988D8E6822558FA4B73AB82A09D1AB.txt', (req
   });
 });
 
-const httpsServer = https.createServer(cred, app);
-httpsServer.listen(80);
+app.listen(3000, () => console.log("running"))
+
+// const httpsServer = https.createServer(cred, app);
+// httpsServer.listen(80);
