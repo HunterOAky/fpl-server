@@ -40,20 +40,5 @@ app.post('/points', async (req: Request, res: Response) => {
   }
 });
 
-// Route to serve the Auth File
-app.get('/.well-known/pki-validation/74988D8E6822558FA4B73AB82A09D1AB.txt', (req: Request, res: Response) => {
-  const filePath = '../74988D8E6822558FA4B73AB82A09D1AB.txt';
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      console.error('Error reading file:', err);
-      res.status(500).send('Internal Server Error');
-    } else {
-      res.type('text/plain').send(data);
-    }
-  });
-});
-
-app.listen(3000, () => console.log("running"))
-
-// const httpsServer = https.createServer(cred, app);
-// httpsServer.listen(80);
+const httpsServer = https.createServer(cred, app);
+httpsServer.listen(8443);
