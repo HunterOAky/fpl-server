@@ -42,7 +42,7 @@ app.post('/points', async (req: Request, res: Response) => {
 
 // Route to serve the Auth File
 app.get('/.well-known/pki-validation/74988D8E6822558FA4B73AB82A09D1AB.txt', (req: Request, res: Response) => {
-  const filePath = './74988D8E6822558FA4B73AB82A09D1AB.txt';
+  const filePath = '../74988D8E6822558FA4B73AB82A09D1AB.txt';
   fs.readFile(filePath, (err, data) => {
     if (err) {
       console.error('Error reading file:', err);
